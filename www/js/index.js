@@ -45,16 +45,18 @@ var app = {
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
 
-
-        if(window.plugins === null || typeof window.plugins === "undefined") {
-            listeningElement.innerHTML = 'window.plugins not defined!';
-            receivedElement.innerHTML = 'window.plugins not defined!';
+        if(cordova === null || typeof cordova === "undefined") {
+            
+            listeningElement.innerHTML = 'cordova not defined!';
+            receivedElement.innerHTML = 'cordova not defined!';
 
         } else {
 
-            if(window.plugins.barcodeScanner === null || typeof window.plugins.barcodeScanner === "undefined") {
-                listeningElement.innerHTML = 'window.plugins.barcodeScanner not defined!';
-                receivedElement.innerHTML = 'window.plugins.barcodeScanner not defined!';
+            var scanner = cordova.require("cordova/plugin/BarcodeScanner");
+
+            if(scanner === null || typeof scanner === "undefined") {
+                listeningElement.innerHTML = 'scanner not defined!';
+                receivedElement.innerHTML = 'scanner not defined!';
             }
 
         }
