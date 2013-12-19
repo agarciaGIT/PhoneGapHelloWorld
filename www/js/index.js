@@ -20,19 +20,6 @@ var app = {
     // Application Constructor
     initialize: function() {
         this.bindEvents();
-
-        var parentElement = document.getElementById('deviceready');
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-        listeningElement.innerHTML = 'bob';
-        receivedElement.innerHTML = 'fred';
-
-        if(window.plugins === null || typeof window.plugins === "undefined") {
-            listeningElement.innerHTML = 'window.plugins not defined';
-            receivedElement.innerHTML = 'window.plugins not defined';
-        }
-
-
     },
     // Bind Event Listeners
     //
@@ -59,14 +46,14 @@ var app = {
 
 
         if(window.plugins === null || typeof window.plugins === "undefined") {
-            listeningElement.innerHTML = 'window.plugins not defined';
-            receivedElement.innerHTML = 'window.plugins not defined';
+            listeningElement.innerHTML = 'window.plugins not defined!';
+            receivedElement.innerHTML = 'window.plugins not defined!';
 
         } else {
 
             if(window.plugins.barcodeScanner === null || typeof window.plugins.barcodeScanner === "undefined") {
-                listeningElement.innerHTML = 'window.plugins.barcodeScanner not defined';
-                receivedElement.innerHTML = 'window.plugins.barcodeScanner not defined';
+                listeningElement.innerHTML = 'window.plugins.barcodeScanner not defined!';
+                receivedElement.innerHTML = 'window.plugins.barcodeScanner not defined!';
             }
 
         }
