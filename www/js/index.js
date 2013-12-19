@@ -45,18 +45,39 @@ var app = {
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
 
-        if(cordova === null || typeof cordova === "undefined") {
-            
-            listeningElement.innerHTML = 'cordova not defined!';
+        if(typeof cordova === "undefined" || cordova === null) {
+
             receivedElement.innerHTML = 'cordova not defined!';
 
         } else {
 
             var scanner = cordova.require("cordova/plugin/BarcodeScanner");
 
-            if(scanner === null || typeof scanner === "undefined") {
-                listeningElement.innerHTML = 'scanner not defined!';
+            if(typeof scanner === "undefined" || scanner === null) {
                 receivedElement.innerHTML = 'scanner not defined!';
+            } else {
+                receivedElement.innerHTML = 'scanner ready!';
+
+                   var calendar = cordova.require("cordova/plugin/Calendar");
+
+                    if(typeof calendar === "undefined" || calendar === null) {
+                        receivedElement.innerHTML = 'calendar not defined!';
+                    } else {
+                        receivedElement.innerHTML = 'calendar ready!';
+
+                        var startDate = new Date("September 24, 2013 13:00:00");
+                        var endDate = new Date("September 24, 2013 14:30:00");
+                        var title = "My nice event";
+                        var location = "Home";
+                        var notes = "Some notes about this event.";
+                        var success = function(message) { receivedElement.innerHTML = 'cal good:' + JSON.stringify(message) };
+                        var error = function(message) { receivedElement.innerHTML = 'cal failed:' + JSON.stringify(message) };
+
+
+                        calendar.createEvent(title,location,notes,startDate,endDate,success,error);
+
+                    }
+
             }
 
         }
