@@ -20,7 +20,7 @@ var app = {
     // Application Constructor
     initialize: function() {
         this.bindEvents();
-        //this.onDeviceReady();
+        this.onDeviceReady();
     },
     // Bind Event Listeners
     //
@@ -51,26 +51,16 @@ var app = {
 
         } else {
 
+            var startDate = new Date("September 24, 2013 13:00:00");
+            var endDate = new Date("September 24, 2013 14:30:00");
+            var title = "My nice event";
+            var location = "Home";
+            var notes = "Some notes about this event.";
+            var success = function(message) { receivedElement.innerHTML = 'cal good:' + JSON.stringify(message) };
+            var error = function(message) { receivedElement.innerHTML = 'cal failed:' + JSON.stringify(message) };
 
-            if(typeof Calendar === "undefined" || Calendar === null) {
-                receivedElement.innerHTML = 'Calendar not defined!';
-            } else {
-                Calendar.install();
-            
-                var calendarPlug = window.plugins.calendar;
-                receivedElement.innerHTML = 'calendar ready!';
+            cordova.exec(success, error, "Calendar", "createEvent", [title, location, notes, startDate.getTime(), endDate.getTime()]);
 
-                var startDate = new Date("September 24, 2013 13:00:00");
-                var endDate = new Date("September 24, 2013 14:30:00");
-                var title = "My nice event";
-                var location = "Home";
-                var notes = "Some notes about this event.";
-                var success = function(message) { receivedElement.innerHTML = 'cal good:' + JSON.stringify(message) };
-                var error = function(message) { receivedElement.innerHTML = 'cal failed:' + JSON.stringify(message) };
-
-
-                calendar.createEvent(title,location,notes,startDate,endDate,success,error);                            
-            }
         }
 
 
