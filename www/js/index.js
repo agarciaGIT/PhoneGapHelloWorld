@@ -51,35 +51,26 @@ var app = {
 
         } else {
 
-            var scanner = cordova.require("cordova/plugin/BarcodeScanner");
 
-            if(typeof scanner === "undefined" || scanner === null) {
-                receivedElement.innerHTML = 'scanner not defined!';
+            if(typeof Calendar === "undefined" || Calendar === null) {
+                receivedElement.innerHTML = 'Calendar not defined!';
             } else {
-                receivedElement.innerHTML = 'scanner ready!';
+                Calendar.install();
+            
+                var calendarPlug = window.plugins.calendar;
+                receivedElement.innerHTML = 'calendar ready!';
 
-                   var calendar = cordova.require("cordova/plugin/Calendar");
-
-                    if(typeof calendar === "undefined" || calendar === null) {
-                        receivedElement.innerHTML = 'calendar not defined!';
-                    } else {
-                        receivedElement.innerHTML = 'calendar ready!';
-
-                        var startDate = new Date("September 24, 2013 13:00:00");
-                        var endDate = new Date("September 24, 2013 14:30:00");
-                        var title = "My nice event";
-                        var location = "Home";
-                        var notes = "Some notes about this event.";
-                        var success = function(message) { receivedElement.innerHTML = 'cal good:' + JSON.stringify(message) };
-                        var error = function(message) { receivedElement.innerHTML = 'cal failed:' + JSON.stringify(message) };
+                var startDate = new Date("September 24, 2013 13:00:00");
+                var endDate = new Date("September 24, 2013 14:30:00");
+                var title = "My nice event";
+                var location = "Home";
+                var notes = "Some notes about this event.";
+                var success = function(message) { receivedElement.innerHTML = 'cal good:' + JSON.stringify(message) };
+                var error = function(message) { receivedElement.innerHTML = 'cal failed:' + JSON.stringify(message) };
 
 
-                        calendar.createEvent(title,location,notes,startDate,endDate,success,error);
-
-                    }
-
+                calendar.createEvent(title,location,notes,startDate,endDate,success,error);                            
             }
-
         }
 
 
